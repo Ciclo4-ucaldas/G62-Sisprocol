@@ -1,5 +1,6 @@
-import {model, property} from '@loopback/repository';
+import {model, property, hasMany} from '@loopback/repository';
 import {Usuario} from '.';
+import {Factura} from './factura.model';
 
 @model()
 export class Cliente extends Usuario {
@@ -16,6 +17,8 @@ export class Cliente extends Usuario {
   })
   cedula: string;
 
+  @hasMany(() => Factura)
+  susFacturas: Factura[];
 
   constructor(data?: Partial<Cliente>) {
     super(data);
