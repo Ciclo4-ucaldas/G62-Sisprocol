@@ -10,3 +10,7 @@ export * from './vehiculo-venta.controller';
 export * from './venta-vehiculo.controller';
 export * from './proveedor-vehiculo.controller';
 export * from './vehiculo-proveedor.controller';
+export * from './vendedor.controller';
+export * from './venta.controller';
+export * from './vehiculo.controller';
+export * from './proveedor.controller';
