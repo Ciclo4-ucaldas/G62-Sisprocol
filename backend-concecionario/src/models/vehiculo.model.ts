@@ -59,13 +59,13 @@ export class Vehiculo extends Entity {
   })
   existencia: number;
 
-  @belongsTo(() => Proveedor)
-  proveedorId: string;
-
   @property({
     type: 'string',
   })
   ventaId?: string;
+
+  @belongsTo(() => Proveedor, {name: 'suProveedor'})
+  proveedorId: string;
 
   constructor(data?: Partial<Vehiculo>) {
     super(data);
