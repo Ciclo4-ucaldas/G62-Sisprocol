@@ -59,11 +59,13 @@ export class Vehiculo extends Entity {
   })
   existencia: number;
 
-  @hasMany(() => Venta)
-  VehVendidos: Venta[];
-
   @belongsTo(() => Proveedor)
   proveedorId: string;
+
+  @property({
+    type: 'string',
+  })
+  ventaId?: string;
 
   constructor(data?: Partial<Vehiculo>) {
     super(data);
