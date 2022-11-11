@@ -6,3 +6,5 @@ export * from './factura.controller';
 export * from './vendedor-venta.controller';
 export * from './venta-vendedor.controller';
 export * from './factura-venta.controller';
+export * from './vehiculo-venta.controller';
+export * from './venta-vehiculo.controller';
