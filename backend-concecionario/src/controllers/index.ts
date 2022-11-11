@@ -8,3 +8,5 @@ export * from './venta-vendedor.controller';
 export * from './factura-venta.controller';
 export * from './vehiculo-venta.controller';
 export * from './venta-vehiculo.controller';
+export * from './proveedor-vehiculo.controller';
+export * from './vehiculo-proveedor.controller';
