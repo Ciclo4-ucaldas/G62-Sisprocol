@@ -30,7 +30,7 @@ export class Usuario extends Entity {
   @property({
     type: 'string',
   })
-  telefono?: string;
+  telefono: string;
 
   @property({
     type: 'string',
@@ -43,6 +43,7 @@ export class Usuario extends Entity {
     required: true,
   })
   contrasena: string;
+  static id: any;
 
 
   constructor(data?: Partial<Usuario>) {
