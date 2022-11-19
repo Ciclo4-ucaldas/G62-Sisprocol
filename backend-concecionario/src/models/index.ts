@@ -5,3 +5,4 @@ export * from './vendedor.model';
 export * from './venta.model';
 export * from './vehiculo.model';
 export * from './proveedor.model';
+export * from './credencial.model';
