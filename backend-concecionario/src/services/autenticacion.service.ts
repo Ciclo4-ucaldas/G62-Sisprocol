@@ -2,7 +2,7 @@ import { /* inject, */ BindingScope, injectable} from '@loopback/core';
 import {repository} from '@loopback/repository';
 import {Llaves} from '../config/llaves';
 import {Cliente, Usuario, Vendedor} from '../models';
-import {ClienteRepository, VendedorRepository} from '../repositories';
+import {AdministradorRepository, ClienteRepository, VendedorRepository} from '../repositories';
 const generador = require("password-generator");
 const cryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
@@ -13,13 +13,15 @@ export class AutenticacionService {
     @repository(VendedorRepository)
     public vendedorRepository: VendedorRepository,
     @repository(ClienteRepository)
-    public ClienteRepository: ClienteRepository
+    public ClienteRepository: ClienteRepository,
+    @repository(AdministradorRepository)
+    public administradorRepository:AdministradorRepository
   ) { }//Así podemos acceder a los metódos del repositorio.
 
   /*
    GenerarClave() --> invoca al generador def. linia2. para que nos cree
    una contraseña aleatoria.
-   
+
   GenerarClave() {
     let contrasena = generador(8, false);
     return contrasena;
@@ -33,21 +35,21 @@ export class AutenticacionService {
 
   async IdentificarPersona(usuario: string, clave: string) {//Con esto accedemos a la BD
     try {
-      let admin= await this.ClienteRepository.findOne({where:{correo:usuario,contrasena:clave}}) 
+      let admin= await this.administradorRepository.findOne({where:{correo:usuario,contrasena:clave}})
       if(admin){
         return admin;
       }
-      let vendedor=await this.vendedorRepository.findOne({where:{correo:usuario,contrasena:clave}}) ; 
+      let vendedor=await this.vendedorRepository.findOne({where:{correo:usuario,contrasena:clave}}) ;
       if(vendedor){
         return vendedor;
       }
-      let cliente=await this.ClienteRepository.findOne({where:{correo:usuario,contrasena:clave}}) ; 
+      let cliente=await this.ClienteRepository.findOne({where:{correo:usuario,contrasena:clave}}) ;
       if(cliente){
         return cliente;
       }
-      
+
     } catch (error) {
-     console.log(error);      
+     console.log(error);
     }
   }
 
@@ -61,10 +63,10 @@ export class AutenticacionService {
     if (rol!=""){
       let vende = await this.vendedorRepository.findOne({where:{correo:usuario.correo, contrasena:usuario.contrasena}})
       if (vende){
-        
+
         rol= vende.constructor.name
-      }  
-    } */ 
+      }
+    } */
 
     let token = jwt.sign({//Fecha de expiración no tiene.
       data: {
