@@ -17,6 +17,7 @@ import {
   del,
   requestBody,
   response,
+  HttpErrors,
 } from '@loopback/rest';
 import {Credencial, Usuario} from '../models';
 import {UsuarioRepository} from '../repositories';
