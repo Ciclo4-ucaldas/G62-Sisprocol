@@ -31,31 +31,40 @@ export class AutenticacionService {
     return claveCifrada;
   }*/
 
-  /*IdentificarPersona(usuario: string, clave: string) {//Con esto accedemos a la BD
-    try {//ubicamos a la persona que corresponda a ese logueo. El acceso a la Bd se hace a traves de un repositorio.
-      let p = this.PersonaRepository.findOne({where: {correo: usuario, clave: clave}})//Comparamos los datos que llegan con los la BD.
-      if (p) {
-        return p;
+  async IdentificarPersona(usuario: string, clave: string) {//Con esto accedemos a la BD
+    try {
+      let admin= await this.ClienteRepository.findOne({where:{correo:usuario,contrasena:clave}}) 
+      if(admin){
+        return admin;
       }
-    } catch {
-      return false;
-
+      let vendedor=await this.vendedorRepository.findOne({where:{correo:usuario,contrasena:clave}}) ; 
+      if(vendedor){
+        return vendedor;
+      }
+      let cliente=await this.ClienteRepository.findOne({where:{correo:usuario,contrasena:clave}}) ; 
+      if(cliente){
+        return cliente;
+      }
+      
+    } catch (error) {
+     console.log(error);      
     }
-  }*/
+  }
 
-  GenerarTokenJWT(usuario: Usuario) {//Recibe una persona ya definida.
+  async GenerarTokenJWT(usuario: Usuario, rol:string) {//Recibe una persona ya definida.
     //INSTALAMOS EL PAQUETE TOKEN --- y LO IMPORTAMOS ARRIVA  const....
-    let rol= "";
+    /*let rol= "";
     let client = await this.ClienteRepository.findOne({where:{correo:usuario.correo, contrasena:usuario.contrasena}})
     if (client){
       rol=client.constructor.name
     }
     if (rol!=""){
-      if (Vendedor){
-        let vende = await this.vendedorRepository.findOne({where:{correo:usuario.correo, contrasena:usuario.contrasena}})
+      let vende = await this.vendedorRepository.findOne({where:{correo:usuario.correo, contrasena:usuario.contrasena}})
+      if (vende){
+        
         rol= vende.constructor.name
       }  
-    }  
+    } */ 
 
     let token = jwt.sign({//Fecha de expiración no tiene.
       data: {

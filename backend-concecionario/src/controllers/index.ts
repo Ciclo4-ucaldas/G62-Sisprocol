@@ -14,3 +14,4 @@ export * from './vendedor.controller';
 export * from './venta.controller';
 export * from './vehiculo.controller';
 export * from './proveedor.controller';
+export * from './usuario.controller';
