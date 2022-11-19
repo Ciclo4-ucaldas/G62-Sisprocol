@@ -5,3 +5,4 @@ export * from './vendedor.repository';
 export * from './venta.repository';
 export * from './proveedor.repository';
 export * from './vehiculo.repository';
+export * from './administrador.repository';
