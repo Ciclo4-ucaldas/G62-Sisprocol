@@ -3,7 +3,7 @@ import {
   CountSchema,
   Filter,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
   del,
@@ -13,11 +13,11 @@ import {
   param,
   patch,
   post,
-  requestBody,
+  requestBody
 } from '@loopback/rest';
 import {
   Vehiculo,
-  Venta,
+  Venta
 } from '../models';
 import {VehiculoRepository} from '../repositories';
 
@@ -60,8 +60,8 @@ export class VehiculoVentaController {
         'application/json': {
           schema: getModelSchemaRef(Venta, {
             title: 'NewVentaInVehiculo',
-            exclude: ['id'],
-            optional: ['vehiculoId']
+            exclude: ['id']
+
           }),
         },
       },

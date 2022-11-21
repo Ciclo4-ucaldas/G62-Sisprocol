@@ -19,7 +19,7 @@ import { AutenticacionService, NotificacionService } from '../services';
 const fetch=require("node-fetch");
 
 export class ClienteController {
-  
+
   constructor(
     @repository(ClienteRepository)
     public clienteRepository: ClienteRepository,
@@ -46,7 +46,7 @@ export class ClienteController {
       },
     })
     cliente: Omit<Cliente, 'id'>,
-  ): Promise<Cliente> {
+  ): Promise<Cliente | any > {
 
     //let clave = this.servicioAutenticacion.GenerarClave();//Nos provee el servicio de generación de clave. claven texto plano
     //let claveCifrada = this.servicioAutenticacion.CifrarClave(clave); //Tenemos la clave cifrada.
@@ -63,7 +63,7 @@ export class ClienteController {
     }else{
       return new HttpErrors[500]("No se pudo crear el cliente")
     }
-   
+
 
     //Notificamos al usuario. Anteriormente lo haciamos via email desde python ?
     //Abrimos nuestro IDE de (Anaconda -- Spyder)
