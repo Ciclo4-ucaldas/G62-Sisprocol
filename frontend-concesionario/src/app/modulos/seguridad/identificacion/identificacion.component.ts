@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SeguridadService } from 'src/app/servicios/seguridad.service';
-import * as cryptoJS from 'crypto-js';
+const cryptoJS = require ("crypto-js");
 
 @Component({
   selector: 'app-identificacion',
