@@ -1,12 +1,12 @@
-import {injectable, /* inject, */ BindingScope} from '@loopback/core';
+import { /* inject, */ BindingScope, injectable} from '@loopback/core';
 
-const generator = require ("password-generator");
+const generator = require("password-generator");
 const cryptoJS = require("crypto-js");
 const fetch = require("node-fetch")
 
 @injectable({scope: BindingScope.TRANSIENT})
 export class NotificacionService {
-  constructor(/* Add @inject to inject parameters */) {}
+  constructor(/* Add @inject to inject parameters */) { }
 
   GenerarClave() {
     let contrasena = generator(8, false);
@@ -18,21 +18,23 @@ export class NotificacionService {
     return claveCifrada;
   }
 
-  notificacionEmail(destino:string, asunto:string, mensaje:string){
+  notificacionEmail(destino: string, asunto: string, mensaje: string) {
     fetch(`http://127.0.0.1:5000/envio-correo?correo_destino=${destino}&asunto=${asunto}&contenido=${mensaje}`)
-    .then((data:any) => {
-      console.log(data);
-      }).catch((error:any)=>{
+      .then((data: any) => {
+        console.log(data);
+      }).catch((error: any) => {
         console.log(error)
       })
-  }  
+    return true;
+  }
 
-  notificacionSms(destino:string, mensaje:string){
+  notificacionSms(destino: string, mensaje: string) {
     fetch(`http://127.0.0.1:5000/sms?telefono${destino}&mensaje=${mensaje}`)
-    .then((data:any) => {
-      console.log(data);
-      }).catch((error:any)=>{
+      .then((data: any) => {
+        console.log(data);
+      }).catch((error: any) => {
         console.log(error)
       })
+    return true;
   }
 }
