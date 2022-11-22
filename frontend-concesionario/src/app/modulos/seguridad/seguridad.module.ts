@@ -15,7 +15,9 @@ import { CambiarClaveComponent } from './cambiar-clave/cambiar-clave.component';
   ],
   imports: [
     CommonModule,
-    SeguridadRoutingModule
+    SeguridadRoutingModule,
+    
+
   ]
 })
 export class SeguridadModule { }
