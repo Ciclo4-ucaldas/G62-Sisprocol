@@ -1,29 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CrearUsuarioComponent } from './personas/crear-usuario/crear-usuario.component';
-import { EditarUsuarioComponent } from './personas/editar-usuario/editar-usuario.component';
-import { EliminarUsuarioComponent } from './personas/eliminar-usuario/eliminar-usuario.component';
-import { BuscarUsuarioComponent } from './personas/buscar-usuario/buscar-usuario.component';
-import { CrearVehiculoComponent } from './vehiculos/crear-vehiculo/crear-vehiculo.component';
-import { EditarVehiculoComponent } from './vehiculos/editar-vehiculo/editar-vehiculo.component';
-import { BuscarVehiculoComponent } from './vehiculos/buscar-vehiculo/buscar-vehiculo.component';
-import { EliminarVehiculoComponent } from './vehiculos/eliminar-vehiculo/eliminar-vehiculo.component';
 
+import { AdministracionRoutingModule } from './administracion-routing.module';
+import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
+import { EditarUsuarioComponent } from './usuarios/editar-usuario/editar-usuario.component';
+import { BuscarUsuarioComponent } from './usuarios/buscar-usuario/buscar-usuario.component';
+import { EliminarUsuarioComponent } from './usuarios/eliminar-usuario/eliminar-usuario.component';
+import { CrearVehiculoComponent } from './vehiculos/crear-vehiculo/crear-vehiculo.component';
+import { BuscarVehiculoComponent } from './vehiculos/buscar-vehiculo/buscar-vehiculo.component';
+import { EditarVehiculoComponent } from './vehiculos/editar-vehiculo/editar-vehiculo.component';
+import { EliminarVehiculoComponent } from './vehiculos/eliminar-vehiculo/eliminar-vehiculo.component';
 
 
 @NgModule({
   declarations: [
     CrearUsuarioComponent,
     EditarUsuarioComponent,
-    EliminarUsuarioComponent,
     BuscarUsuarioComponent,
+    EliminarUsuarioComponent,
     CrearVehiculoComponent,
-    EditarVehiculoComponent,
     BuscarVehiculoComponent,
+    EditarVehiculoComponent,
     EliminarVehiculoComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AdministracionRoutingModule
   ]
 })
 export class AdministracionModule { }

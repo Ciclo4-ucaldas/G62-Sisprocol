@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AsignarVentaComponent } from './asignar-venta/asignar-venta.component';
 
+import { VentasRoutingModule } from './ventas-routing.module';
+import { AsignarVentaComponent } from './asignar-venta/asignar-venta.component';
 
 
 @NgModule({
@@ -9,7 +10,8 @@ import { AsignarVentaComponent } from './asignar-venta/asignar-venta.component';
     AsignarVentaComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    VentasRoutingModule
   ]
 })
 export class VentasModule { }
