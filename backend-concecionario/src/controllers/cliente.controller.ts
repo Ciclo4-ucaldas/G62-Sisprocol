@@ -1,4 +1,4 @@
-import { service } from '@loopback/core';
+import {service} from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -14,9 +14,9 @@ import {
 } from '@loopback/rest';
 import {Cliente} from '../models';
 import {ClienteRepository} from '../repositories';
-import { AutenticacionService, NotificacionService } from '../services';
+import {AutenticacionService, NotificacionService} from '../services';
 
-const fetch=require("node-fetch");
+const fetch = require("node-fetch");
 
 export class ClienteController {
 
@@ -46,7 +46,7 @@ export class ClienteController {
       },
     })
     cliente: Omit<Cliente, 'id'>,
-  ): Promise<Cliente | any > {
+  ): Promise<Cliente | any> {
 
     //let clave = this.servicioAutenticacion.GenerarClave();//Nos provee el servicio de generación de clave. claven texto plano
     //let claveCifrada = this.servicioAutenticacion.CifrarClave(clave); //Tenemos la clave cifrada.
@@ -55,12 +55,12 @@ export class ClienteController {
     cliente.contrasena = claveCifrada;//A la persona que llega le debemos asignar a la clave esa clave cifrada. dificil leer en BD
     let client = this.clienteRepository.create(cliente)
     let asunto = "Registro en plataforma como Cliente"
-    let mensaje = "Bienvenido a nuestra plataforma"+cliente.nombres+""+cliente.apellidos+" su clave temporal es: "+cliente.contrasena+" y su usuario es: "+cliente.correo;
+    let mensaje = "Bienvenido a nuestra plataforma" + cliente.nombres + "" + cliente.apellidos + " su clave temporal es: " + clave + " y su usuario es: " + cliente.correo;
     let enviadoEmail = this.servicioNotificacion.notificacionEmail(cliente.correo, asunto, mensaje);
     let enviadoSms = this.servicioNotificacion.notificacionSms(cliente.telefono, mensaje);
-    if(enviadoEmail&&enviadoSms){
+    if (enviadoEmail && enviadoSms) {
       return cliente
-    }else{
+    } else {
       return new HttpErrors[500]("No se pudo crear el cliente")
     }
 
