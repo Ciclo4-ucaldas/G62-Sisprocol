@@ -20,6 +20,7 @@ import {
 } from '@loopback/rest';
 import {Vehiculo} from '../models';
 import {VehiculoRepository} from '../repositories';
+@authenticate("admin")
 
 export class VehiculoController {
   constructor(
@@ -27,8 +28,6 @@ export class VehiculoController {
     public vehiculoRepository : VehiculoRepository,
   ) {}
 
-
-  @authenticate("admin")
   @post('/vehiculos')
   @response(200, {
     description: 'Vehiculo model instance',
