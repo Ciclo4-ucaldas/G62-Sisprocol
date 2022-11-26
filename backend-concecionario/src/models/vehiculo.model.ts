@@ -64,7 +64,7 @@ export class Vehiculo extends Entity {
   })
   ventaId?: string;
 
-  @belongsTo(() => Proveedor, {name: 'suProveedor'})
+  @belongsTo(() => Proveedor, {name: 'SuProveedor'})
   proveedorId: string;
 
   constructor(data?: Partial<Vehiculo>) {

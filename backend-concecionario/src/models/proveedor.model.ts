@@ -35,7 +35,7 @@ export class Proveedor extends Entity {
   correo: string;
 
   @hasMany(() => Vehiculo)
-  SusVehiculos: Vehiculo[];
+  susVehiculos: Vehiculo[];
 
   constructor(data?: Partial<Proveedor>) {
     super(data);

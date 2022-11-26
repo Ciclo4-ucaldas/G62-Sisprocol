@@ -17,6 +17,7 @@ import {
   del,
   requestBody,
   response,
+  HttpErrors,
 } from '@loopback/rest';
 import {Vendedor} from '../models';
 import {VendedorRepository} from '../repositories';
@@ -48,8 +49,20 @@ export class VendedorController {
       },
     })
     vendedor: Omit<Vendedor, 'id'>,
-  ): Promise<Vendedor> {
-    return this.vendedorRepository.create(vendedor);
+  ): Promise<Vendedor|any> {
+    let clave = this.servicioNotificacion.GenerarClave();
+    let claveCifrada = this.servicioNotificacion.CifrarClave(clave);
+    vendedor.contrasena = claveCifrada;//A la persona que llega le debemos asignar a la clave esa clave cifrada. dificil leer en BD
+    let vende = this.vendedorRepository.create(vendedor)
+    let asunto = "Registro en plataforma como Vendedor"
+    let mensaje = "Bienvenido a nuestra plataforma" + vendedor.nombres + "" + vendedor.apellidos + " su clave temporal es: " + clave + " y su usuario es: " + vendedor.correo;
+    let enviadoEmail = this.servicioNotificacion.notificacionEmail(vendedor.correo, asunto, mensaje);
+    let enviadoSms = this.servicioNotificacion.notificacionSms(vendedor.telefono, mensaje);
+    if (enviadoEmail && enviadoSms) {
+      return vende
+    } else {
+        return new HttpErrors[500]("No se pudo crear el Vendedor")
+    }
   }
 
   @get('/vendedors/count')
