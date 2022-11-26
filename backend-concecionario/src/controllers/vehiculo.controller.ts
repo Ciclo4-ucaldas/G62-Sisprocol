@@ -1,3 +1,4 @@
+import { authenticate } from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -19,6 +20,7 @@ import {
 } from '@loopback/rest';
 import {Vehiculo} from '../models';
 import {VehiculoRepository} from '../repositories';
+@authenticate("admin")
 
 export class VehiculoController {
   constructor(

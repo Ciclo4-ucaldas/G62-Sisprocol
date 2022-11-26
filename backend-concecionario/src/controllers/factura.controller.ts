@@ -1,3 +1,4 @@
+import { authenticate } from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -19,6 +20,8 @@ import {
 } from '@loopback/rest';
 import {Factura} from '../models';
 import {FacturaRepository} from '../repositories';
+
+@authenticate("vende")
 
 export class FacturaController {
   constructor(

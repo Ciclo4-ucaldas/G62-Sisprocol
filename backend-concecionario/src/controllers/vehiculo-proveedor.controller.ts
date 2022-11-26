@@ -33,6 +33,6 @@ export class VehiculoProveedorController {
   async getProveedor(
     @param.path.string('id') id: typeof Vehiculo.prototype.id,
   ): Promise<Proveedor> {
-    return this.vehiculoRepository.suProveedor(id);
+    return this.vehiculoRepository.SuProveedor(id);
   }
 }

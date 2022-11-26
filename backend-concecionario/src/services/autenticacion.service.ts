@@ -18,21 +18,7 @@ export class AutenticacionService {
     public administradorRepository:AdministradorRepository
   ) { }//Así podemos acceder a los metódos del repositorio.
 
-  /*
-   GenerarClave() --> invoca al generador def. linia2. para que nos cree
-   una contraseña aleatoria.
-
-  GenerarClave() {
-    let contrasena = generador(8, false);
-    return contrasena;
-  }
-  //Creamos el metodo que nos permita cifrar la clave.
-
-  /*CifrarClave(contrasena: string) {//Acá importamos nuestro paquete.
-    let claveCifrada = cryptoJS.MD5(contrasena).toString();//MD5 --> metódo de cifrado.
-    return claveCifrada;
-  }*/
-
+ 
   async IdentificarPersona(usuario: string, clave: string) {//Con esto accedemos a la BD
     try {
       let admin= await this.administradorRepository.findOne({where:{correo:usuario,contrasena:clave}})
@@ -54,20 +40,7 @@ export class AutenticacionService {
   }
 
   async GenerarTokenJWT(usuario: Usuario, rol:string) {//Recibe una persona ya definida.
-    //INSTALAMOS EL PAQUETE TOKEN --- y LO IMPORTAMOS ARRIVA  const....
-    /*let rol= "";
-    let client = await this.ClienteRepository.findOne({where:{correo:usuario.correo, contrasena:usuario.contrasena}})
-    if (client){
-      rol=client.constructor.name
-    }
-    if (rol!=""){
-      let vende = await this.vendedorRepository.findOne({where:{correo:usuario.correo, contrasena:usuario.contrasena}})
-      if (vende){
-
-        rol= vende.constructor.name
-      }
-    } */
-
+  
     let token = jwt.sign({//Fecha de expiración no tiene.
       data: {
         id: usuario.id,//Este id pertenece al id que se tiene en la base de datos.

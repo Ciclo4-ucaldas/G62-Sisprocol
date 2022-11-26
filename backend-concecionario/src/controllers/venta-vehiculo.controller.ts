@@ -42,7 +42,7 @@ export class VentaVehiculoController {
     @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<Vehiculo>,
   ): Promise<Vehiculo[]> {
-    return this.ventaRepository.susVehiculosVendidos(id).find(filter);
+    return this.ventaRepository.SusVehiculos(id).find(filter);
   }
 
   @post('/ventas/{id}/vehiculos', {
@@ -67,7 +67,7 @@ export class VentaVehiculoController {
       },
     }) vehiculo: Omit<Vehiculo, 'id'>,
   ): Promise<Vehiculo> {
-    return this.ventaRepository.susVehiculosVendidos(id).create(vehiculo);
+    return this.ventaRepository.SusVehiculos(id).create(vehiculo);
   }
 
   @patch('/ventas/{id}/vehiculos', {
@@ -90,7 +90,7 @@ export class VentaVehiculoController {
     vehiculo: Partial<Vehiculo>,
     @param.query.object('where', getWhereSchemaFor(Vehiculo)) where?: Where<Vehiculo>,
   ): Promise<Count> {
-    return this.ventaRepository.susVehiculosVendidos(id).patch(vehiculo, where);
+    return this.ventaRepository.SusVehiculos(id).patch(vehiculo, where);
   }
 
   @del('/ventas/{id}/vehiculos', {
@@ -105,6 +105,6 @@ export class VentaVehiculoController {
     @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Vehiculo)) where?: Where<Vehiculo>,
   ): Promise<Count> {
-    return this.ventaRepository.susVehiculosVendidos(id).delete(where);
+    return this.ventaRepository.SusVehiculos(id).delete(where);
   }
 }

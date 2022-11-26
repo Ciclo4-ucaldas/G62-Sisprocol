@@ -11,21 +11,17 @@ export class VentaRepository extends DefaultCrudRepository<
   VentaRelations
 > {
 
-  public readonly vendedor: BelongsToAccessor<Vendedor, typeof Venta.prototype.id>;
+  public readonly SuVendedor: BelongsToAccessor<Vendedor, typeof Venta.prototype.id>;
 
-  public readonly vehiculo: BelongsToAccessor<Vehiculo, typeof Venta.prototype.id>;
-
-  public readonly susVehiculosVendidos: HasManyRepositoryFactory<Vehiculo, typeof Venta.prototype.id>;
+  public readonly SusVehiculos: HasManyRepositoryFactory<Vehiculo, typeof Venta.prototype.id>;
 
   constructor(
     @inject('datasources.mongodb') dataSource: MongodbDataSource, @repository.getter('VendedorRepository') protected vendedorRepositoryGetter: Getter<VendedorRepository>, @repository.getter('VehiculoRepository') protected vehiculoRepositoryGetter: Getter<VehiculoRepository>,
   ) {
     super(Venta, dataSource);
-    this.susVehiculosVendidos = this.createHasManyRepositoryFactoryFor('susVehiculosVendidos', vehiculoRepositoryGetter,);
-    this.registerInclusionResolver('susVehiculosVendidos', this.susVehiculosVendidos.inclusionResolver);
-    this.vehiculo = this.createBelongsToAccessorFor('vehiculo', vehiculoRepositoryGetter,);
-    this.registerInclusionResolver('vehiculo', this.vehiculo.inclusionResolver);
-    this.vendedor = this.createBelongsToAccessorFor('vendedor', vendedorRepositoryGetter,);
-    this.registerInclusionResolver('vendedor', this.vendedor.inclusionResolver);
+    this.SusVehiculos = this.createHasManyRepositoryFactoryFor('SusVehiculos', vehiculoRepositoryGetter,);
+    this.registerInclusionResolver('SusVehiculos', this.SusVehiculos.inclusionResolver);
+    this.SuVendedor = this.createBelongsToAccessorFor('SuVendedor', vendedorRepositoryGetter,);
+    this.registerInclusionResolver('SuVendedor', this.SuVendedor.inclusionResolver);
   }
 }

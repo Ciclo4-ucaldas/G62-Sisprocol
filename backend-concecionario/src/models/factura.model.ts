@@ -1,8 +1,11 @@
+import { authenticate } from '@loopback/authentication';
 import {Entity, model, property, belongsTo} from '@loopback/repository';
 import {Cliente} from './cliente.model';
 import {Venta} from './venta.model';
 
 @model()
+
+
 export class Factura extends Entity {
   @property({
     type: 'string',

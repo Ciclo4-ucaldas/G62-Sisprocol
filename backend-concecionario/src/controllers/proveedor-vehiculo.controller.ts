@@ -42,7 +42,7 @@ export class ProveedorVehiculoController {
     @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<Vehiculo>,
   ): Promise<Vehiculo[]> {
-    return this.proveedorRepository.SuProveedor(id).find(filter);
+    return this.proveedorRepository.susVehiculos(id).find(filter);
   }
 
   @post('/proveedors/{id}/vehiculos', {
@@ -67,7 +67,7 @@ export class ProveedorVehiculoController {
       },
     }) vehiculo: Omit<Vehiculo, 'id'>,
   ): Promise<Vehiculo> {
-    return this.proveedorRepository.SuProveedor(id).create(vehiculo);
+    return this.proveedorRepository.susVehiculos(id).create(vehiculo);
   }
 
   @patch('/proveedors/{id}/vehiculos', {
@@ -90,7 +90,7 @@ export class ProveedorVehiculoController {
     vehiculo: Partial<Vehiculo>,
     @param.query.object('where', getWhereSchemaFor(Vehiculo)) where?: Where<Vehiculo>,
   ): Promise<Count> {
-    return this.proveedorRepository.SuProveedor(id).patch(vehiculo, where);
+    return this.proveedorRepository.susVehiculos(id).patch(vehiculo, where);
   }
 
   @del('/proveedors/{id}/vehiculos', {
@@ -105,6 +105,6 @@ export class ProveedorVehiculoController {
     @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Vehiculo)) where?: Where<Vehiculo>,
   ): Promise<Count> {
-    return this.proveedorRepository.SuProveedor(id).delete(where);
+    return this.proveedorRepository.susVehiculos(id).delete(where);
   }
 }
