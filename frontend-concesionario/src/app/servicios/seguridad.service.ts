@@ -19,8 +19,12 @@ export class SeguridadService {
   VerificarSesionActual(){
     let datos = this.ObtenerInformacionSesion();
     if(datos){
-      this.datosUsuarioEnSesion.next(datos);
+      this.RefrescarDatosSesion(datos);
     }
+  }
+
+  RefrescarDatosSesion(datos: ModeloIdentificar){
+    this.datosUsuarioEnSesion.next(datos);
   }
 
   ObtenerdatosUsuarioEnSesion(){
@@ -40,8 +44,10 @@ export class SeguridadService {
 
 
 AlmacenarSesion(datos: ModeloIdentificar){
+  datos.estaIdentificado = true;
   let stringDatos = JSON.stringify(datos);
   localStorage.setItem("datosSesion", stringDatos);
+  this.RefrescarDatosSesion(datos);
 }
 
 ObtenerInformacionSesion(){
@@ -56,6 +62,7 @@ ObtenerInformacionSesion(){
 
 EliminarInformacionSesion(){
   localStorage.removeItem("datosSesion");
+  this.RefrescarDatosSesion(new ModeloIdentificar());
 }
 
 SeHaIniciadoSesion(){
