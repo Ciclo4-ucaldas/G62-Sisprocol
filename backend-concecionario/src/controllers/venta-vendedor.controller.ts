@@ -33,6 +33,6 @@ export class VentaVendedorController {
   async getVendedor(
     @param.path.string('id') id: typeof Venta.prototype.id,
   ): Promise<Vendedor> {
-    return this.ventaRepository.vendedor(id);
+    return this.ventaRepository.SuVendedor(id);
   }
 }

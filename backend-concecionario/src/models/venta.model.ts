@@ -23,11 +23,11 @@ export class Venta extends Entity {
   })
   cantidad: number;
 
-  @belongsTo(() => Vendedor)
+  @belongsTo(() => Vendedor, {name: 'SuVendedor'})
   vendedorId: string;
 
   @hasMany(() => Vehiculo)
-  susVehiculosVendidos: Vehiculo[];
+  SusVehiculos: Vehiculo[];
 
   constructor(data?: Partial<Venta>) {
     super(data);
